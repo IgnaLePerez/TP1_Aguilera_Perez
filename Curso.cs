@@ -11,7 +11,7 @@ namespace TP1
 
         public bool AgregarAlumno(Alumno alumno)
         {
-            int i = BuscarAlumnoDni(alumno.dni);
+            int i = BuscarAlumnoDni(alumno.Dni);
 
             if (i == -1){
                 alumnos.Add(alumno);
@@ -26,7 +26,7 @@ namespace TP1
         {
             int i = 0;
                 
-            while (i < alumnos.Count && alumnos[i].dni != alumno.dni)
+            while (i < alumnos.Count && alumnos[i].Dni != dni)
             i++;
 
             if (i == alumnos.Count){
@@ -46,21 +46,21 @@ namespace TP1
             }
             
             else{
-                alumnos[i].Falta += falta;
+                alumnos[i].Faltas += falta;
                 return true;
             }
         }
 
-        public List<alumno> alumnos
+        public List<Alumno> Alumnos
         {
             get{return this.alumnos;}
         }
 
-        public List<alumno> AlumnosLibres()
+        public List<Alumno> AlumnosLibres()
         {
-            List <alumno> alumnosLibres = new();
+            List <Alumno> alumnosLibres = new();
 
-            foreach (alumno a in this.alumnos)
+            foreach (Alumno a in this.alumnos)
             {
                 if (a.Faltas > MAXIMO_FALTAS)
                     alumnosLibres.Add(a);
@@ -71,10 +71,7 @@ namespace TP1
 
         public Alumno BuscarAlumno(int dni)
         {
-            int i = 0;
-                
-            while (i < alumnos.Count && alumnos[i].dni != alumno.dni)
-            i++;
+            int i = BuscarAlumnoDni(dni);
 
             if (i == alumnos.Count){
                 return null;

@@ -24,7 +24,7 @@ namespace TP1
             set{this.nombre = value;}
         }
 
-        public double Dni
+        public int Dni
         {
             get{return this.dni;}
             set{this.dni = value;}
