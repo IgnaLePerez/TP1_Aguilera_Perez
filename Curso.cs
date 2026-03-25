@@ -3,23 +3,19 @@ namespace TP1
     public class Curso
     {
         private const double MAXIMO_FALTAS = 15;
-        private List <Alumno> alumnos;
+        Dictionary<int, Alumno> alumnos;
 
         public Curso (){
-            alumnos = new();
+            alumnos = new Dictionary<int, Alumno>();
         }
 
         public bool AgregarAlumno(Alumno alumno)
         {
-            int i = BuscarAlumnoDni(alumno.Dni);
-
-            if (i == -1){
-                alumnos.Add(alumno);
+            if (alumnos.ContainsKey(alumno.Dni)){
+                alumnos.Add(Alumno.Dni, alumno)
                 return true;
             }
-            else{
-                return false;
-            }
+            return false;
         }
 
         public int BuscarAlumnoDni(int dni)
@@ -39,19 +35,16 @@ namespace TP1
 
         public bool AgregarFalta(int dni, double falta)
         {
-            int i = BuscarAlumnoDni(dni);
-
-            if(i == -1){
-                return false;
-            }
-            
-            else{
-                alumnos[i].Faltas += falta;
+            if(alumnos.ContainsKey(dni)){
+                alumnos[dni].cantidadFaltas += falta;
                 return true;
+            }     
+            else{
+                return false;
             }
         }
 
-        public List<Alumno> Alumnos
+        public Dictionary<int, Alumno> Alumnos
         {
             get{return this.alumnos;}
         }
@@ -60,24 +53,21 @@ namespace TP1
         {
             List <Alumno> alumnosLibres = new();
 
-            foreach (Alumno a in this.alumnos)
+            foreach (Alumno a in this.alumnos.Values)
             {
                 if (a.Faltas > MAXIMO_FALTAS)
                     alumnosLibres.Add(a);
             }
-
             return alumnosLibres;
         } 
 
         public Alumno BuscarAlumno(int dni)
         {
-            int i = BuscarAlumnoDni(dni);
-
-            if (i == alumnos.Count){
-                return null;
+            if (alumnos.ContainsKey(dni)){
+                return alumnos[dni];
             }
             else{
-                return alumnos[i];
+                return null;
             }
         }
     }

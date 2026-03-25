@@ -58,7 +58,7 @@
             int i = 0;
             Console.WriteLine("Alumnos:");
             Console.WriteLine("-----------------------------------------");
-            foreach (Alumno a in curso.Alumnos)
+            foreach (Alumno a in curso.Alumnos.Values)
             {
                 Console.WriteLine($"[{i}] ({a.Dni}) {a.Nombre}");
             }
@@ -85,11 +85,11 @@
                 Alumno a = new Alumno(dni, nombre);
                 bool sePudo = curso.AgregarAlumno(a);
                 if (!sePudo){
-                    Console.WriteLine("[ERROR] No se pudo ingresar al alumno (Id repetído). Presione cualquier tecla para volver al menú...");
+                    Console.WriteLine("[ERROR] No se pudo ingresar al alumno (Id repetido). Presione cualquier tecla para volver al menú...");
                     Console.ReadKey();
                 }
                 else{
-                    Console.WriteLine("Se ha agregado al alumno con éxito. Presione cualquier tecla para volver al menú...");
+                    Console.WriteLine("Se ha agregado al alumno con éxito! Presione cualquier tecla para volver al menú...");
                     Console.ReadKey();
                 }
             }
