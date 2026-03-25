@@ -12,7 +12,7 @@ namespace TP1
         public bool AgregarAlumno(Alumno alumno)
         {
             if (alumnos.ContainsKey(alumno.Dni)){
-                alumnos.Add(Alumno.Dni, alumno)
+                alumnos.Add(alumno.Dni, alumno);
                 return true;
             }
             return false;
@@ -36,7 +36,7 @@ namespace TP1
         public bool AgregarFalta(int dni, double falta)
         {
             if(alumnos.ContainsKey(dni)){
-                alumnos[dni].cantidadFaltas += falta;
+                alumnos[dni].Faltas += falta;
                 return true;
             }     
             else{
